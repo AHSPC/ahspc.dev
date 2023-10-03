@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+
+        body {
+            width: 100vw;
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        button {
+            margin: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        label {
+            font-size: 20px;
+        }
+
+        input {
+            font-size: 20px;
+            padding: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Copy the command and paste it in your terminal:</h1>
+
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username"><br><br>
+
+    <button onclick="copyText()">Copy Command</button>
+
+    <script>
+        function copyText() {
+            const username = document.querySelector('#username').value;
+            if (username === '') {
+                alert('Please enter a username');
+                return;
+            }
+            const text = `git config --global user.name "${username}" \ngit config --global user.email "${username}@ahs.local"`;
+
+            navigator.clipboard.writeText(text)
+
+            const button = document.querySelector('button');
+            button.innerText = 'Copied!';
+
+            setTimeout(() => {
+                button.innerText = 'Copy Command';
+            }, 3000);
+        }
+    </script>
+
+</body>
+
+</html>
